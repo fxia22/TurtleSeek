@@ -1,0 +1,9 @@
+<launch>
+
+  <node name="recognizer" pkg="pocketsphinx" type="recognizer.py">
+    <param name="fsg" value="$(find pocketsphinx)/furoc/starter/finite_state.fsg"/>
+    <param name="dict" value="$(find pocketsphinx)/furoc/starter/words.dic"/>
+    <remap from="/recognizer/output" to="recognizer/cmd_starter" />
+  </node>
+
+</launch>

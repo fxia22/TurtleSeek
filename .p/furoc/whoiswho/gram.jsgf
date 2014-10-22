@@ -1,0 +1,6 @@
+#JSGF V1.0;
+grammar furoc;
+public <furocCmd> = <myname> | <hellotinker>;
+<myname> = MY NAME IS <names>;
+<names> = TOM | BOB | JACK | LUCY | NICK | ALEX;
+<hellotinker> = HELLO <names>;
