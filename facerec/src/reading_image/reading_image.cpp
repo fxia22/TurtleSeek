@@ -26,7 +26,7 @@ ImageConverter::~ImageConverter()
     
 void ImageConverter::imageCb(const sensor_msgs::ImageConstPtr& msg)
 {
-    //cout << "imageCb" << endl;
+    cout << "imageCb" << endl;
     cv_bridge::CvImagePtr cv_ptr;
     try
     {

@@ -255,8 +255,9 @@ bool Recognizer::Init(int argc, char ** argv)
  char ftFile[256],conFile[256],triFile[256];
  */
  
-			   string echo = "espeak --stdout 'hello, i am Turtle Seek' | aplay"; //remove
-               printf("%s\n",echo.c_str());
+			   //string echo = "espeak --stdout 'hello, i am Turtle Seek' | aplay";
+		string echo = "espeak --stdout 'Beginning facial recognition, please face the camera' | aplay"; //remove               
+		printf("%s\n",echo.c_str());
                system(echo.c_str());
  
  
@@ -283,12 +284,22 @@ bool Recognizer::Init(int argc, char ** argv)
  con=FACETRACKER::IO::LoadCon(conFile);
  
  printf("Load ok!\n");
- 
+
  ros::init(argc, argv, "FaceRec");
  n_ = new ros::NodeHandle;
  rate_ = new ros::Rate(33);
  sub_ = n_->subscribe("/speech_rec",1000, &Recognizer::callBack, this );
  ic_ = new ImageConverter();
+
+printf("\n3...\n");
+ros::Duration(1.0).sleep(); 
+printf("2...\n");
+ros::Duration(1.0).sleep();
+printf("1...\n");
+ros::Duration(1.0).sleep();
+printf("capture\n");
+//ic_->ready = true;
+/*
   while (!ic_->ready)
   {
       ros::spinOnce();
@@ -298,13 +309,10 @@ bool Recognizer::Init(int argc, char ** argv)
             printf("Terminated by control-C in Init.\n");
             return false;
         }
-   } 
+   } */
      
     //delay
     ros::Duration(1.0).sleep();
- 
- 
- 
  
  
  if (detector && t_model) 
@@ -333,16 +341,24 @@ int Recognizer::Run()
  	 bool fcheck = false; double scale = 1; int fpd = -1; 
  	 std::string name = "unknown";   
  	 this->guestpicnum = 999;
+
+CvCapture* camera = cvCreateCameraCapture(CV_CAP_ANY); 
+if(!camera) {std::cout<<"NO CAMERA"<<std::endl;return -1;}
+
     while (ros::ok())
     {
-        ic_->curr_image.copyTo(frame);
-        cv::flip(frame,im,1);
-        cv::cvtColor(im,gray,CV_BGR2GRAY);
-		if (!findface) {findface = detector->Detect(gray,RectArr);
+        //ic_->curr_image.copyTo(frame);
+	frame = cvQueryFrame(camera);        
+	cv::flip(frame,im,1);
+        cv::cvtColor(im,gray,CV_BGR2GRAY); //OpenCV Error: Assertion failed (scn == 3 || scn == 4)
+		
+
+if (!findface) {findface = detector->Detect(gray,RectArr);
 		std::cout<<"facenum"<<RectArr.size()<<std::endl;
+
 		if (findface)   std::cout<<"x:"<<RectArr[0]->x<<"y:"<<RectArr[0]->y<<"width:"<<RectArr[0]->width<<"height:"<<RectArr[0]->height<<std::endl;
 		}
-		
+	
 		//sort
 		for (int i = 0;i<RectArr.size();i++)
 			for (int j=0;j<i;j++)
@@ -432,14 +448,17 @@ int Recognizer::Run()
 		 
 		  
         
-        ic_->ready = false;
+        /*ic_->ready = false;
         while (!ic_->ready && ros::ok())
         {
             ros::spinOnce();
-        }
+        }*/
+	ros::spinOnce();
         rate_->sleep();
         count ++ ;
     }
+    	
+
     list.close();
     return 0;
 }
