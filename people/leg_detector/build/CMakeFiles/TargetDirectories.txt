@@ -8,6 +8,7 @@
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles/doxygen.dir
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/gtest/CMakeFiles/gtest.dir
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/gtest/CMakeFiles/gtest_main.dir
+/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles/knee_detector.dir
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles/leg_detector.dir
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles/rosbuild_clean-test-results.dir
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles/rosbuild_precompile.dir

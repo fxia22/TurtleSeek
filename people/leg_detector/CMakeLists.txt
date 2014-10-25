@@ -43,5 +43,11 @@ rosbuild_add_executable(leg_detector
                        src/leg_detector.cpp 
                        src/calc_leg_features.cpp)
                        
-target_link_libraries(leg_detector ${BULLET_LIBRARIES})
+rosbuild_add_executable(knee_detector 
+                       src/laser_processor.cpp
+                       src/knee_detector.cpp 
+                       src/calc_leg_features.cpp)
 
+
+target_link_libraries(leg_detector ${BULLET_LIBRARIES})
+target_link_libraries(knee_detector ${BULLET_LIBRARIES})

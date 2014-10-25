@@ -241,6 +241,19 @@ doxygen/fast:
 .PHONY : doxygen/fast
 
 #=============================================================================
+# Target rules for targets named knee_detector
+
+# Build rule for target.
+knee_detector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 knee_detector
+.PHONY : knee_detector
+
+# fast build rule for target.
+knee_detector/fast:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/build
+.PHONY : knee_detector/fast
+
+#=============================================================================
 # Target rules for targets named leg_detector
 
 # Build rule for target.
@@ -466,6 +479,7 @@ src/calc_leg_features.o: src/calc_leg_features.cpp.o
 
 # target to build an object file
 src/calc_leg_features.cpp.o:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/calc_leg_features.cpp.o
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/src/calc_leg_features.cpp.o
 .PHONY : src/calc_leg_features.cpp.o
 
@@ -474,6 +488,7 @@ src/calc_leg_features.i: src/calc_leg_features.cpp.i
 
 # target to preprocess a source file
 src/calc_leg_features.cpp.i:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/calc_leg_features.cpp.i
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/src/calc_leg_features.cpp.i
 .PHONY : src/calc_leg_features.cpp.i
 
@@ -482,14 +497,40 @@ src/calc_leg_features.s: src/calc_leg_features.cpp.s
 
 # target to generate assembly for a file
 src/calc_leg_features.cpp.s:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/calc_leg_features.cpp.s
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/src/calc_leg_features.cpp.s
 .PHONY : src/calc_leg_features.cpp.s
+
+src/knee_detector.o: src/knee_detector.cpp.o
+.PHONY : src/knee_detector.o
+
+# target to build an object file
+src/knee_detector.cpp.o:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/knee_detector.cpp.o
+.PHONY : src/knee_detector.cpp.o
+
+src/knee_detector.i: src/knee_detector.cpp.i
+.PHONY : src/knee_detector.i
+
+# target to preprocess a source file
+src/knee_detector.cpp.i:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/knee_detector.cpp.i
+.PHONY : src/knee_detector.cpp.i
+
+src/knee_detector.s: src/knee_detector.cpp.s
+.PHONY : src/knee_detector.s
+
+# target to generate assembly for a file
+src/knee_detector.cpp.s:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/knee_detector.cpp.s
+.PHONY : src/knee_detector.cpp.s
 
 src/laser_processor.o: src/laser_processor.cpp.o
 .PHONY : src/laser_processor.o
 
 # target to build an object file
 src/laser_processor.cpp.o:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/laser_processor.cpp.o
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/src/laser_processor.cpp.o
 .PHONY : src/laser_processor.cpp.o
 
@@ -498,6 +539,7 @@ src/laser_processor.i: src/laser_processor.cpp.i
 
 # target to preprocess a source file
 src/laser_processor.cpp.i:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/laser_processor.cpp.i
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/src/laser_processor.cpp.i
 .PHONY : src/laser_processor.cpp.i
 
@@ -506,6 +548,7 @@ src/laser_processor.s: src/laser_processor.cpp.s
 
 # target to generate assembly for a file
 src/laser_processor.cpp.s:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/src/laser_processor.cpp.s
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/src/laser_processor.cpp.s
 .PHONY : src/laser_processor.cpp.s
 
@@ -551,6 +594,7 @@ help:
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
+	@echo "... knee_detector"
 	@echo "... leg_detector"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
@@ -573,6 +617,9 @@ help:
 	@echo "... src/calc_leg_features.o"
 	@echo "... src/calc_leg_features.i"
 	@echo "... src/calc_leg_features.s"
+	@echo "... src/knee_detector.o"
+	@echo "... src/knee_detector.i"
+	@echo "... src/knee_detector.s"
 	@echo "... src/laser_processor.o"
 	@echo "... src/laser_processor.i"
 	@echo "... src/laser_processor.s"

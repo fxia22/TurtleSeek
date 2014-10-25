@@ -298,13 +298,48 @@ clean: CMakeFiles/doxygen.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/knee_detector.dir
+
+# All Build rule for target.
+CMakeFiles/knee_detector.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/depend
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles  5 6 7
+	@echo "Built target knee_detector"
+.PHONY : CMakeFiles/knee_detector.dir/all
+
+# Include target in all.
+all: CMakeFiles/knee_detector.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/knee_detector.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/knee_detector.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles 0
+.PHONY : CMakeFiles/knee_detector.dir/rule
+
+# Convenience name for target.
+knee_detector: CMakeFiles/knee_detector.dir/rule
+.PHONY : knee_detector
+
+# clean rule for target.
+CMakeFiles/knee_detector.dir/clean:
+	$(MAKE) -f CMakeFiles/knee_detector.dir/build.make CMakeFiles/knee_detector.dir/clean
+.PHONY : CMakeFiles/knee_detector.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/knee_detector.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/leg_detector.dir
 
 # All Build rule for target.
 CMakeFiles/leg_detector.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/depend
 	$(MAKE) -f CMakeFiles/leg_detector.dir/build.make CMakeFiles/leg_detector.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles  5 6 7
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/build/CMakeFiles  8 9 10
 	@echo "Built target leg_detector"
 .PHONY : CMakeFiles/leg_detector.dir/all
 

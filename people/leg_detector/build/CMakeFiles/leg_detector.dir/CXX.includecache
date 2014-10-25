@@ -24,11 +24,25 @@ dynamic_reconfigure/config_init_mutex.h
 boost/any.hpp
 -
 
+/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/calc_leg_features.cpp
+calc_leg_features.h
+/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/calc_leg_features.h
+opencv/cxcore.h
+/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/opencv/cxcore.h
+opencv/cv.h
+/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/opencv/cv.h
+
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/calc_leg_features.h
 laser_processor.h
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/laser_processor.h
 sensor_msgs/LaserScan.h
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/sensor_msgs/LaserScan.h
+
+/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/laser_processor.cpp
+laser_processor.h
+/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/laser_processor.h
+stdexcept
+-
 
 /home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/laser_processor.h
 unistd.h

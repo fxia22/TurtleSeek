@@ -255,7 +255,7 @@ _CATKIN_GTEST_INCLUDE:FILEPATH=/usr/include/gtest/gtest.h
 _CATKIN_GTEST_SRC:FILEPATH=/usr/src/gtest/src/gtest.cc
 
 //Path to a file.
-_file_name:FILEPATH=/home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/calc_leg_features.cpp
+_file_name:FILEPATH=//home/turtlebot/turtlebot_rb/sandbox/people/leg_detector/src/calc_leg_features.cpp
 
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/hydro/share/catkin/cmake

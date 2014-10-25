@@ -3,7 +3,6 @@
 #include <actionlib/client/simple_action_client.h>
 #include <costmap_2d/costmap_2d_ros.h>
 #include <costmap_2d/costmap_2d.h>
-
 #include <geometry_msgs/PolygonStamped.h>
 
 #include <frontier_exploration/ExploreTaskAction.h>
@@ -31,6 +30,7 @@ public:
      * @brief Constructor for the server, sets up this node's ActionServer for exploration and ActionClient to move_base for robot movement.
      * @param name Name for SimpleActionServer
      */
+    
     FrontierExplorationServer(std::string name) :
         tf_listener_(ros::Duration(10.0)),
         private_nh_("~"),
@@ -43,9 +43,8 @@ public:
         as_.registerPreemptCallback(boost::bind(&FrontierExplorationServer::preemptCb, this));
         as_.start();
     }
-
+     
 private:
-
     ros::NodeHandle nh_;
     ros::NodeHandle private_nh_;
     tf::TransformListener tf_listener_;
