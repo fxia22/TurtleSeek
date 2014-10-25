@@ -1,0 +1,8 @@
+<stack>
+  <description brief="people">people</description>
+  <author>David V. Lu!!</author>
+  <maintainer email="jamie.diprose@gmail.com">Jamie Diprose</maintainer>
+  <license>BSD</license>  
+  <url>http://ros.org/wiki/people</url>
+  <depend stack="ros" />
+</stack>

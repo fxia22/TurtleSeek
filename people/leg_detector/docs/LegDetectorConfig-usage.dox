@@ -1,0 +1,23 @@
+\subsubsection usage Usage
+\verbatim
+<node name="leg_detector" pkg="leg_detector" type="leg_detector">
+  <param name="connection_threshold" type="double" value="0.06" />
+  <param name="min_points_per_group" type="int" value="5" />
+  <param name="leg_reliability_limit" type="double" value="0.7" />
+  <param name="publish_legs" type="bool" value="True" />
+  <param name="publish_people" type="bool" value="True" />
+  <param name="publish_leg_markers" type="bool" value="True" />
+  <param name="publish_people_markers" type="bool" value="True" />
+  <param name="no_observation_timeout" type="double" value="0.5" />
+  <param name="max_second_leg_age" type="double" value="2.0" />
+  <param name="max_track_jump" type="double" value="1.0" />
+  <param name="max_meas_jump" type="double" value="0.75" />
+  <param name="leg_pair_separation" type="double" value="1.0" />
+  <param name="fixed_frame" type="str" value="camera_depth_frame" />
+  <param name="kalman_p" type="double" value="4.0" />
+  <param name="kalman_q" type="double" value="0.002" />
+  <param name="kalman_r" type="double" value="10.0" />
+  <param name="kalman_on" type="int" value="1" />
+</node>
+\endverbatim
+

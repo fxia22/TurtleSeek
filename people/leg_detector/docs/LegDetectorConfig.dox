@@ -1,0 +1,22 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~connection_threshold" : \b [double] [m] min: 0.0, default: 0.06, max: 0.25
+- \b "~min_points_per_group" : \b [int]  min: 1, default: 5, max: 20
+- \b "~leg_reliability_limit" : \b [double]  min: 0.0, default: 0.7, max: 1.0
+- \b "~publish_legs" : \b [bool]  min: False, default: True, max: True
+- \b "~publish_people" : \b [bool]  min: False, default: True, max: True
+- \b "~publish_leg_markers" : \b [bool]  min: False, default: True, max: True
+- \b "~publish_people_markers" : \b [bool]  min: False, default: True, max: True
+- \b "~no_observation_timeout" : \b [double] Timeout tolerance for no observations [s] min: 0.0, default: 0.5, max: 5.0
+- \b "~max_second_leg_age" : \b [double] [s] min: 0.0, default: 2.0, max: 5.0
+- \b "~max_track_jump" : \b [double] [m] min: 0.0, default: 1.0, max: 5.0
+- \b "~max_meas_jump" : \b [double] [m] min: 0.0, default: 0.75, max: 5.0
+- \b "~leg_pair_separation" : \b [double] [m] min: 0.0, default: 1.0, max: 2.0
+- \b "~fixed_frame" : \b [str] Fixed Frame min: , default: camera_depth_frame, max: 
+- \b "~kalman_p" : \b [double]  min: 0.0, default: 4.0, max: 10.0
+- \b "~kalman_q" : \b [double]  min: 0.0, default: 0.002, max: 10.0
+- \b "~kalman_r" : \b [double]  min: 0.0, default: 10.0, max: 20.0
+- \b "~kalman_on" : \b [int]  min: 0, default: 1, max: 1
+
