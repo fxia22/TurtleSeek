@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(statemachine)
+project(people_msgs)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED roscpp std_msgs rosgraph_msgs people_msgs tf)
+find_package(catkin REQUIRED COMPONENTS
+    roscpp
+    rospy
+    std_msgs
+    geometry_msgs
+    message_generation
+    )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -33,18 +39,16 @@ find_package(catkin REQUIRED roscpp std_msgs rosgraph_msgs people_msgs tf)
 ##   * add "message_generation" and every package in MSG_DEP_SET to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
-##     catkin_package(CATKIN_DEPENDS ...)
 ##   * uncomment the add_*_files sections below as needed
 ##     and list every .msg/.srv/.action file to be processed
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+ add_message_files(
+   FILES
+   PositionMeasurement.msg
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -61,10 +65,11 @@ find_package(catkin REQUIRED roscpp std_msgs rosgraph_msgs people_msgs tf)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs  # Or other packages containing msgs
+   geometry_msgs
+)
 
 ###################################
 ## catkin specific configuration ##
@@ -77,9 +82,11 @@ find_package(catkin REQUIRED roscpp std_msgs rosgraph_msgs people_msgs tf)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES statemachine
+#  LIBRARIES people_msgs
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
+
+  CATKIN_DEPENDS message_runtime
 )
 
 ###########
@@ -88,24 +95,24 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(include)
+# include_directories(include)
 
 ## Declare a cpp library
-# add_library(statemachine
-#   src/${PROJECT_NAME}/statemachine.cpp
+# add_library(people_msgs
+#   src/${PROJECT_NAME}/people_msgs.cpp
 # )
 
 ## Declare a cpp executable
-add_executable(statemachine_node src/main.cpp;src/StateMachine.cpp)
+# add_executable(people_msgs_node src/people_msgs_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(statemachine_node statemachine_generate_messages_cpp)
+# add_dependencies(people_msgs_node people_msgs_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(statemachine_node
-   ${catkin_LIBRARIES}
- )
+# target_link_libraries(people_msgs_node
+#   ${catkin_LIBRARIES}
+# )
 
 #############
 ## Install ##
@@ -122,7 +129,7 @@ add_executable(statemachine_node src/main.cpp;src/StateMachine.cpp)
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS statemachine statemachine_node
+# install(TARGETS people_msgs people_msgs_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -147,7 +154,7 @@ add_executable(statemachine_node src/main.cpp;src/StateMachine.cpp)
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_statemachine.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_people_msgs.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

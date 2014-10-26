@@ -37,5 +37,6 @@
 <include file="$(find frontier_exploration)/launch/global_map.launch">
 </include>
 
-
+<node pkg="statemachine" name="statemachine_node1" type="statemachine_node">
+</node>
 </launch>
