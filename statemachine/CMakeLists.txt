@@ -12,7 +12,7 @@ find_package(catkin REQUIRED
 		tf
 		move_base_msgs
 		actionlib
-	
+	    visualization_msgs
 	)
 
 ## System dependencies are found with CMake's conventions

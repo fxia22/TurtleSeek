@@ -11,6 +11,8 @@
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 #include <tf/transform_broadcaster.h>
+#include <visualization_msgs/Marker.h>
+
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 class Point
@@ -39,6 +41,7 @@ private:
 	ros::NodeHandle* _nh;
     ros::Subscriber* _sub;
     ros::Subscriber* _people_sub;
+    ros::Publisher* _marker_pub;
     ros::Rate* _rate;
 	tf::TransformListener* _tf_listener;
     tf::TransformBroadcaster* _br;
@@ -46,6 +49,7 @@ private:
 	int statenum;
 	int peoplenum;
 	void initVisit();
+    void publishMarker();
 };
 
 

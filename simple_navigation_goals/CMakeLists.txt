@@ -1,20 +1,15 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(facerec)
+project(simple_navigation_goals)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  cv_bridge
-  image_transport
+  actionlib
+  move_base_msgs
   roscpp
-  rospy
-  std_msgs
-  std_srvs
-  roslib
-  rosgraph_msgs
-  )
-find_package(OpenCV)
+)
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -72,7 +67,7 @@ find_package(OpenCV)
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs
+#   move_base_msgs
 # )
 
 ###################################
@@ -86,8 +81,8 @@ find_package(OpenCV)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES facerec
-#  CATKIN_DEPENDS opencv2 roscpp rospy std_msgs std_srvs
+#  LIBRARIES simple_navigation_goals
+#  CATKIN_DEPENDS actionlib move_base_msgs roscpp
 #  DEPENDS system_lib
 )
 
@@ -100,45 +95,24 @@ catkin_package(
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  include
 )
 
-
-
 ## Declare a cpp library
-# add_library(facerec
-#   src/${PROJECT_NAME}/facerec.cpp
+# add_library(simple_navigation_goals
+#   src/${PROJECT_NAME}/simple_navigation_goals.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(facerec_node src/facerec_node.cpp)
+add_executable(simple_navigation_goals_node src/simple_navigation_goals.cpp)
 
-  link_directories(${OpenCV_LIBS_DIR})
-  ADD_EXECUTABLE(tracker src/reading_image/reading_image;src/CLM;src/facerec;src/FCheck;src/FDet;src/IO;src/Patch;src/PAW;src/PDM;src/Tracker;src/utils)
-  ADD_EXECUTABLE(test src/test;src/utils)
-  ADD_EXECUTABLE(train src/train;src/utils)
-  ADD_EXECUTABLE(facerec_node src/reading_image/reading_image;src/main;src/Recognizer;src/CLM;src/FCheck;src/FDet;src/IO;src/Patch;src/PAW;src/PDM;src/Tracker;src/utils)
-  target_link_libraries(tracker ${OpenCV_LIBS}
-  )
-  target_link_libraries(test ${OpenCV_LIBS})
-  target_link_libraries(train ${OpenCV_LIBS})
 ## Add cmake target dependencies of the executable/library
-  target_link_libraries(train ${catkin_LIBRARIES})
-  target_link_libraries(tracker ${catkin_LIBRARIES})
-  target_link_libraries(facerec_node ${OpenCV_LIBS})
-## Add cmake target dependencies of the executable/library
-  target_link_libraries(facerec_node ${catkin_LIBRARIES}
-  )
-  
-
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(facerec_node facerec_generate_messages_cpp)
+# add_dependencies(simple_navigation_goals_node simple_navigation_goals_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(facerec_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(simple_navigation_goals_node
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##
@@ -155,7 +129,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS facerec facerec_node
+# install(TARGETS simple_navigation_goals simple_navigation_goals_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -180,7 +154,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_facerec.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_simple_navigation_goals.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

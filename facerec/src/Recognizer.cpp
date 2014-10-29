@@ -9,6 +9,8 @@
 #include <ros/package.h>
 #include <ros/ros.h>
 #include "std_msgs/String.h"
+#include "rosgraph_msgs/Log.h"
+
 #include <fstream>
 #include "reading_image/reading_image.h"
 
@@ -18,11 +20,12 @@
 //		need to be replaced
 
 
-void Recognizer::callBack(const std_msgs::String::ConstPtr& msg)
+//void Recognizer::callBack(const std_msgs::String::ConstPtr& msg)
+void Recognizer::callBack(const rosgraph_msgs::Log::ConstPtr &msg) //LOU
 {
-    printf ("%s\n",msg->data.c_str());
-    string cmd = msg->data;
-    if (cmd == "hello") {
+    std::string str = msg->msg;
+    printf ("%s\n",msg->msg.c_str());
+    if (str.find("ready to recognize")!=std::string::npos) {
         this->findface = false;
         this->model = false;
         this->state = TESTING;  
@@ -32,9 +35,17 @@ void Recognizer::callBack(const std_msgs::String::ConstPtr& msg)
             archive = true;
             }
         else this->recognize = false;
+        system("espeak \"please look at the camera in 5\"");
+        ros::Duration(0.7).sleep();
+        system("espeak \"4 \"");
+        ros::Duration(0.7).sleep();
+        system("espeak \"3 \"");
+        ros::Duration(0.7).sleep();
+        system("espeak \"2 \"");
+        ros::Duration(0.7).sleep();
+        system("espeak \"1 \"");
         this->count = 0;
-        
-    }
+    }/*
     else 
     {
         string name = cmd.substr(cmd.find("name is")+8,cmd.length()-6);
@@ -48,7 +59,7 @@ void Recognizer::callBack(const std_msgs::String::ConstPtr& msg)
         this->model = false;
     }
     
-    
+    */
     
 }
 
@@ -256,9 +267,10 @@ bool Recognizer::Init(int argc, char ** argv)
  */
  
 			   //string echo = "espeak --stdout 'hello, i am Turtle Seek' | aplay";
-		string echo = "espeak --stdout 'Beginning facial recognition, please face the camera' | aplay"; //remove               
-		printf("%s\n",echo.c_str());
-               system(echo.c_str());
+
+    //string echo = "espeak --stdout 'Beginning facial recognition, please face the camera' | aplay"; //remove               
+	//	printf("%s\n",echo.c_str());
+ //              system(echo.c_str());
  
  
  package_path_ = ros::package::getPath("facerec") + "/";
@@ -288,16 +300,17 @@ bool Recognizer::Init(int argc, char ** argv)
  ros::init(argc, argv, "FaceRec");
  n_ = new ros::NodeHandle;
  rate_ = new ros::Rate(33);
- sub_ = n_->subscribe("/speech_rec",1000, &Recognizer::callBack, this );
- ic_ = new ImageConverter();
+ //sub_ = n_->subscribe("/speech_rec",1000, &Recognizer::callBack, this );
+	sub_ = n_->subscribe("/rosout",1000, &Recognizer::callBack, this ); //LOU
+ //ic_ = new ImageConverter();
 
-printf("\n3...\n");
-ros::Duration(1.0).sleep(); 
-printf("2...\n");
-ros::Duration(1.0).sleep();
-printf("1...\n");
-ros::Duration(1.0).sleep();
-printf("capture\n");
+//printf("\n3...\n");
+//ros::Duration(1.0).sleep(); 
+//printf("2...\n");
+//ros::Duration(1.0).sleep();
+//printf("1...\n");
+//ros::Duration(1.0).sleep();
+//printf("capture\n");
 //ic_->ready = true;
 /*
   while (!ic_->ready)
@@ -350,10 +363,10 @@ if(!camera) {std::cout<<"NO CAMERA"<<std::endl;return -1;}
         //ic_->curr_image.copyTo(frame);
 	frame = cvQueryFrame(camera);        
 	cv::flip(frame,im,1);
-        cv::cvtColor(im,gray,CV_BGR2GRAY); //OpenCV Error: Assertion failed (scn == 3 || scn == 4)
+    cv::cvtColor(im,gray,CV_BGR2GRAY); //OpenCV Error: Assertion failed (scn == 3 || scn == 4)
 		
 
-if (!findface) {findface = detector->Detect(gray,RectArr);
+if ((!findface)&&(state == TESTING)) {findface = detector->Detect(gray,RectArr);
 		std::cout<<"facenum"<<RectArr.size()<<std::endl;
 
 		if (findface)   std::cout<<"x:"<<RectArr[0]->x<<"y:"<<RectArr[0]->y<<"width:"<<RectArr[0]->width<<"height:"<<RectArr[0]->height<<std::endl;
@@ -398,7 +411,8 @@ if (!findface) {findface = detector->Detect(gray,RectArr);
             model = true;
             }
             
-            
+        if (c == 't') state = TESTING;
+
         if (c == 'd') {
             findface = false;
             model = false;
@@ -429,7 +443,7 @@ if (!findface) {findface = detector->Detect(gray,RectArr);
 		 
 		 
 		 
-		 if ((((state == TESTING) && (!recognize))||(c == 'r'))&&(model)&&(findface)&&(count > 20))
+		 if ((((state == TESTING) && (!recognize))||(c == 'r'))&&(model)&&(findface)&&(count > 30))
 		 {
 		     int idx = t_model->_clm.GetViewIdx(); failed = false;
 	         string filename = this->package_path_+"recognize/1.jpg";
@@ -444,7 +458,8 @@ if (!findface) {findface = detector->Detect(gray,RectArr);
                printf("%s\n",echo.c_str());
                system(echo.c_str());
 			   recognize = true;
-		 }
+               ROS_INFO("finish recognize");
+         }
 		 
 		  
         

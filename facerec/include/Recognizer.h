@@ -12,6 +12,7 @@
 #include "reading_image/reading_image.h"
 #include "std_msgs/String.h"
 
+#include "rosgraph_msgs/Log.h"
 class Recognizer
 {
 private:
@@ -58,7 +59,7 @@ public:
  int Run();
  void Draw(cv::Mat &image,cv::Mat &shape,cv::Mat &con,cv::Mat &tri,cv::Mat &visi,std::string& name);
  void SaveImage(cv::Mat &image,cv::Mat &shape,cv::Mat &con,cv::Mat &tri,cv::Mat &visi,std::string filename);
- void callBack(const std_msgs::String::ConstPtr& msg);
+ void callBack(const rosgraph_msgs::Log::ConstPtr& msg);
  ~Recognizer(){};
 };
 
