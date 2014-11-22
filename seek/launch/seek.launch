@@ -10,7 +10,7 @@
 </include>
 
 <include file="$(find turtlebot_navigation)/launch/amcl_demo.launch">
-    <arg name="map_file" value="$(find tb_maps)/mymap.yaml" />
+    <arg name="map_file" value="$(find tb_maps)/klaus.yaml" />
 </include>
 
 <include file="$(find leg_detector)/launch/leg_detector.launch">

@@ -125,10 +125,7 @@ void StateMachine::Run()
         tf::Vector3 ppos;// = tfRobotMap.getOrigin();
         double robotx;// = ppos.x();
         double roboty;// = ppos.y();
-        double lambda = 0.1;
-    
-    
-    
+        double lambda = 0.2;
     while (ros::ok())
     {
         switch (state)
@@ -136,12 +133,9 @@ void StateMachine::Run()
             case StateMachine::EXPLORING:
                 break;
             case StateMachine::VISITING:
-				
-                
-                         
         
         try{
-                ros::Time latest = ros::Time(0);
+                ros::Time latest = ros::Time::now();
                 _tf_listener->waitForTransform("map", "base_link",latest, ros::Duration(3.0));
                 _tf_listener->lookupTransform("map", "base_link",latest, tfRobotMap);
         }
@@ -153,16 +147,13 @@ void StateMachine::Run()
                ppos = tfRobotMap.getOrigin();
                robotx = ppos.x();
                roboty = ppos.y();
-                
-                
-                
                 goal.target_pose.header.frame_id = "/map";
 				goal.target_pose.header.stamp = ros::Time::now();
 				goal.target_pose.pose.position.x = plist[statenum].x*(1-lambda) + robotx*lambda;
 				goal.target_pose.pose.position.y = plist[statenum].y*(1-lambda) + roboty*lambda;
-				goal.target_pose.pose.orientation.w = 1.0;
+                goal.target_pose.pose.orientation = tf::createQuaternionMsgFromYaw(atan2(plist[statenum].y-roboty,plist[statenum].x-robotx));
                 ROS_INFO("Sending goal");
-                sprintf(voicecmd,"espeak --stdout \"visit people number %d, at %.1f %.1f\" | aplay",statenum,plist[statenum].x,plist[statenum].y);
+                sprintf(voicecmd,"espeak --stdout \"visit people number %d, at %.1f, %.1f\" | aplay",statenum,plist[statenum].x,plist[statenum].y);
 				system(voicecmd);
                 
                 _ac->sendGoal(goal);
@@ -171,7 +162,7 @@ void StateMachine::Run()
 				if(_ac->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
 				    {
 						ROS_INFO("Hooray, the base moved 1 meter forward");
-						system("espeak --stdout \"come to me ,sweet\" | aplay");
+						system("espeak --stdout \"come to me ,baby\" | aplay");
                         ROS_INFO("ready to recognize");
 						if (statenum<peoplenum) state = StateMachine::RECOGNIZING;
 					}

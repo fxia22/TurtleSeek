@@ -440,7 +440,19 @@ if ((!findface)&&(state == TESTING)) {findface = detector->Detect(gray,RectArr);
 		    list<<path<<std::endl;
 		 }
 		 
-		 
+		 if (c=='a')
+         {
+            cin>>name;
+            state = TRAINING;
+            this->guestname = name;
+            this->guestpicnum = 0;
+            printf("%s\n",name.c_str());
+            string echo = "espeak --stdout 'Good evening "+name+" please wait a moment ' | aplay"; 
+            printf("%s\n",echo.c_str());
+            system(echo.c_str());
+            this->findface = false;
+            this->model = false;
+         }
 		 
 		 
 		 if ((((state == TESTING) && (!recognize))||(c == 'r'))&&(model)&&(findface)&&(count > 30))
